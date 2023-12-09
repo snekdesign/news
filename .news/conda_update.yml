@@ -1,0 +1,61 @@
+cache_path: F:\var\conda
+channels:
+- conda-forge
+- numba
+- Python-for-HPC
+- pyviz
+platforms:
+- linux-64
+- noarch
+- win-64
+specs:
+- boa >=0.16.1
+- cython >=3.0.7
+- ffmpeg >=6.1.1
+- hvplot >=0.10.0
+- libmamba >=1.6.0
+- nginx >=1.25.4
+- numba::numba >=0.59.0
+- pixi >=0.10.0
+- py-rattler >=0.3.0
+- Python-for-HPC::numba
+- rattler-build >=0.6.1
+- setuptools >=69.0.0
+- typing-extensions >=4.9.0
+- vs2022_win-64 >=19.38.0
+mirrored_channels:
+- auto
+- biobakery
+- bioconda
+- c4aarch64
+- caffe2
+- conda-forge
+- deepmodeling
+- dglteam
+- fastai
+- fermi
+- idaholab
+- intel
+- matsci
+- menpo
+- MindSpore
+- mordred-descriptor
+- msys2
+- numba
+- ohmeta
+- omnia
+- Paddle
+- peterjc123
+- plotly
+- psi4
+- pytorch
+- pytorch-lts
+- pytorch-test
+- pytorch3d
+- pyviz
+- qiime2
+- rapidsai
+- rdkit
+- simpleitk
+- stackless
+- ursky
