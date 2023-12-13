@@ -2,6 +2,7 @@ __all__ = ('CondaUpdate',)
 
 import argparse
 import asyncio
+from collections.abc import Callable
 from collections.abc import Iterator
 import datetime
 import itertools
@@ -14,6 +15,7 @@ import conda.models.match_spec as conda
 import pydantic
 from pydantic import StringConstraints
 import rattler
+from rattler.platform.platform import PlatformLiteral
 from typing_extensions import Doc
 import yaml
 
@@ -35,7 +37,7 @@ class CondaUpdate(pydantic.BaseModel):
         Doc('Where the repo data should be downloaded'),
     ]
     platforms: Annotated[
-        _Strs,
+        frozenset[PlatformLiteral],
         Len(1),
         Doc('Platforms for which the repo data should be fetched'),
     ]
@@ -58,8 +60,8 @@ class CondaUpdate(pydantic.BaseModel):
                         cache_path=self.cache_path,
                         callback=None,
                     ),
-                )
-            )
+                ),
+            ),
         )
 
 
@@ -83,10 +85,16 @@ def _main():
         if url.startswith(_PREFIX) and url.startswith(prefixes, _START):
             sep = url.index('/', _START) + 1
             url = mirrors[url[_START:sep]] + url[sep:]
-        print(datetime.date.fromtimestamp(rec.timestamp), url)
+        if ts := rec.timestamp:
+            print(datetime.date.fromtimestamp(ts), url)
+        else:
+            print(url)
 
 
-def _make_filter(spec: str):
+def _make_filter(spec: str) -> Callable[
+    [rattler.SparseRepoData],
+    Iterator[rattler.RepoDataRecord],
+]:
     conda_spec = conda.MatchSpec(spec)
     pkg_name = rattler.PackageName(conda_spec.name)
     # BUG: in py-rattler<=0.2.0 (maybe later):
