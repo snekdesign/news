@@ -14,15 +14,15 @@ specs:
 - ffmpeg >=6.1.1
 - hvplot >=0.10.0
 - libmamba >=1.6.0
+- netcdf4 >=1.7.0
 - nginx >=1.25.4
 - numba::numba >=0.59.0
-- pixi >=0.10.0
+- pixi >=0.11.0
 - py-rattler >=0.3.0
 - Python-for-HPC::numba
-- rattler-build >=0.6.1
+- rattler-build >=0.6.2
 - setuptools >=69.0.0
-- typing-extensions >=4.9.0
-- vs2022_win-64 >=19.38.0
+- typing-extensions >=4.10.0
 mirrored_channels:
 - auto
 - biobakery
