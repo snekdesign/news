@@ -1,26 +1,18 @@
 cache_path: F:\var\conda
 channels:
 - conda-forge
-- numba
-- Python-for-HPC
-- pyviz
 platforms:
 - linux-64
 - noarch
 - win-64
 specs:
 - boa >=0.16.1
-- cython >=3.0.8
 - ffmpeg >=6.1.2
-- hvplot >=0.10.0
 - libmamba >=2.0.0
-- netcdf4 >=1.7.0
 - nginx >=1.25.4
-- numba::numba >=0.60.0
-- pixi >=0.11.0
+- pixi >=0.14.0
 - py-rattler >=0.3.0
-- Python-for-HPC::numba
-- rattler-build >=0.6.2
+- rattler-build >=0.8.2
 - typing-extensions >=4.10.0
 mirrored_channels:
 - auto
