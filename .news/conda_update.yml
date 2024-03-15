@@ -6,13 +6,12 @@ platforms:
 - noarch
 - win-64
 specs:
-- boa >=0.16.1
 - ffmpeg >=6.1.2
 - libmamba >=2.0.0
-- nginx >=1.25.4
-- pixi >=0.16.0
-- py-rattler >=0.3.0
-- rattler-build >=0.12.1
+- nginx >=1.25.5
+- pixi >=0.17.0
+- py-rattler >=0.3.1
+- rattler-build >=0.13.1
 - typing-extensions >=4.11.0
 mirrored_channels:
 - auto
