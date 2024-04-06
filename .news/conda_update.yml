@@ -4,15 +4,14 @@ channels:
 platforms:
 - linux-64
 - noarch
-- win-64
 specs:
-- ffmpeg >=6.1.2
+- ffmpeg >=7.0.1
 - libmamba >=2.0.0
 - nginx >=1.25.5
-- pixi >=0.17.0
+- pixi >=0.19.0
 - py-rattler >=0.3.1
-- rattler-build >=0.13.1
-- typing-extensions >=4.11.0
+- rattler-build >=0.14.3
+- typing-extensions >=4.12.0
 mirrored_channels:
 - auto
 - biobakery
