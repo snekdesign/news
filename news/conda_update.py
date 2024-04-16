@@ -47,7 +47,7 @@ class CondaUpdate(pydantic.BaseModel):
     """Core class for checking conda repo data updates"""
 
     cache_path: Annotated[
-        str,
+        pydantic.StrictStr,
         Doc('Where the repo data should be downloaded'),
     ]
     platforms: Annotated[
@@ -56,24 +56,23 @@ class CondaUpdate(pydantic.BaseModel):
         Doc('Platforms for which the repo data should be fetched'),
     ] = frozenset(('noarch', _CURRENT_PLATFORM))
     channels: Annotated[
-        frozenset[str],
+        frozenset[pydantic.StrictStr],
         Len(1),
         Doc('Channels to fetch repo data'),
     ] = frozenset(('conda-forge',))
     specs: Annotated[
-        frozenset[str],
+        frozenset[pydantic.StrictStr],
         Len(1),
         Doc('Queried package specifications'),
     ]
     mirrored_channels: Annotated[
-        frozenset[str],
+        frozenset[pydantic.StrictStr],
         Doc('Channels which are mirrored at ' + _MIRROR_PREFIX),
     ] = frozenset()
 
     model_config = pydantic.ConfigDict(
         str_strip_whitespace=True,
         str_min_length=1,
-        strict=True,
     )
 
     async def check(self):
