@@ -1,4 +1,4 @@
-cache_path: F:\var\conda
+cache_path: F:\var\conda\pkgs\cache
 channels:
 - conda-forge
 platforms:
@@ -7,10 +7,10 @@ platforms:
 specs:
 - ffmpeg >=7.0.1
 - libmamba >=2.0.0
-- nginx >=1.25.5
-- pixi >=0.19.0
+- nginx >=1.25.6
+- pixi >=0.21.0
 - py-rattler >=0.3.1
-- rattler-build >=0.14.3
+- rattler-build >=0.15.1
 - typing-extensions >=4.12.0
 mirrored_channels:
 - auto
