@@ -5,13 +5,14 @@ platforms:
 - linux-64
 - noarch
 specs:
-- ffmpeg >=7.0.1
+- ffmpeg >=7.0.2
 - libmamba >=2.0.0
-- nginx >=1.25.6
-- pixi >=0.21.0
-- py-rattler >=0.3.1
-- rattler-build >=0.15.1
+- nginx >=1.26.1
+- pixi >=0.24.0
+- py-rattler >=0.5.1
+- rattler-build >=0.16.3
 - typing-extensions >=4.12.0
+- vs2022_win-64 >=19.40.0
 mirrored_channels:
 - auto
 - biobakery
