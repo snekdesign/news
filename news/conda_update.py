@@ -80,7 +80,7 @@ class CondaUpdate(pydantic.BaseModel):
             'rattler.PackageName',
             'list[tuple[rattler.MatchSpec, _CondaMatchSpec | None]]',
         ](list)
-        # BUG: in py-rattler<=0.3.0 (maybe later):
+        # BUG: in py-rattler<=0.6.2 (maybe later):
         # - rattler.MatchSpec() rejects `[channel=xxx]`
         # - rattler.MatchSpec.matches() ignores channel
         for conda_spec in set(map(_CondaMatchSpec, self.specs)):
@@ -132,10 +132,7 @@ def _main():
         if url.startswith(_PREFIX) and url.startswith(prefixes, _START):
             sep = url.index('/', _START) + 1
             url = mirrors[url[_START:sep]] + url[sep:]
-        if ts := rec.timestamp:
-            print(datetime.date.fromtimestamp(ts), url)
-        else:
-            print(url)
+        print(rec.timestamp, url)
 
 
 class _Namespace:
