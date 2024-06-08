@@ -7,12 +7,12 @@ platforms:
 specs:
 - ffmpeg >=7.0.2
 - libmamba >=2.0.0
-- nginx >=1.26.1
+- nginx >=1.27.1
 - pixi >=0.24.0
 - py-rattler >=0.6.3
 - rattler-build >=0.16.3
-- typing-extensions >=4.12.0
-- vs2022_win-64 >=19.40.0
+- streamlit >=1.36.0
+- typing-extensions >=4.13.0
 mirrored_channels:
 - auto
 - biobakery
