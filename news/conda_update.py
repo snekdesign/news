@@ -80,7 +80,7 @@ class CondaUpdate(pydantic.BaseModel):
             'rattler.PackageName',
             'list[tuple[rattler.MatchSpec, _CondaMatchSpec | None]]',
         ](list)
-        # BUG: in py-rattler<=0.6.2 (maybe later):
+        # BUG: in py-rattler<=0.6.4 (maybe later):
         # - rattler.MatchSpec() rejects `[channel=xxx]`
         # - rattler.MatchSpec.matches() ignores channel
         for conda_spec in set(map(_CondaMatchSpec, self.specs)):
