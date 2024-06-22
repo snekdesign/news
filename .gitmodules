@@ -1,0 +1,4 @@
+[submodule "parselmouth"]
+	path = parselmouth
+	url = git@github.com:prefix-dev/parselmouth.git
+	branch = main

@@ -1,30 +1,17 @@
-# /// script
-# requires-python = ">=3.9"
-# dependencies = [
-#   "conda",
-#   "pydantic>=2",
-#   "py-rattler>=0.2.1",
-#   "pyyaml",
-# ]
-# ///
-
 __all__ = ('CondaUpdate',)
 
-import argparse
 import asyncio
 import collections
-import datetime
 from typing import Annotated
 from typing import cast
-from typing import TextIO
 from typing import TYPE_CHECKING
 
 from annotated_types import Len
 import pydantic
+import pydantic_settings
 import rattler
 from rattler.platform.platform import PlatformLiteral
 from typing_extensions import Doc
-import yaml
 
 if TYPE_CHECKING:
     class _CondaMatchSpec:
@@ -33,6 +20,8 @@ if TYPE_CHECKING:
         def match(self, rec: rattler.RepoDataRecord) -> bool: ...
 else:
     from conda.models.match_spec import MatchSpec as _CondaMatchSpec
+
+from . import _base
 
 _CURRENT_PLATFORM = cast(PlatformLiteral, str(rattler.Platform.current()))
 
@@ -43,8 +32,14 @@ _PREFIX = 'https://conda.anaconda.org/'
 _START = len(_PREFIX)
 
 
-class CondaUpdate(pydantic.BaseModel):
+class CondaUpdate(_base.Settings):
     """Core class for checking conda repo data updates"""
+
+    model_config = pydantic_settings.SettingsConfigDict(
+        pyproject_toml_table_header=('tool', 'news', 'conda-update'),
+        str_strip_whitespace=True,
+        str_min_length=1,
+    )
 
     cache_path: Annotated[
         pydantic.StrictStr,
@@ -69,11 +64,6 @@ class CondaUpdate(pydantic.BaseModel):
         frozenset[pydantic.StrictStr],
         Doc('Channels which are mirrored at ' + _MIRROR_PREFIX),
     ] = frozenset()
-
-    model_config = pydantic.ConfigDict(
-        str_strip_whitespace=True,
-        str_min_length=1,
-    )
 
     async def check(self):
         specs_by_name = collections.defaultdict[
@@ -112,12 +102,8 @@ class CondaUpdate(pydantic.BaseModel):
         return records
 
 
-def _main():
-    parser = argparse.ArgumentParser()
-    parser.add_argument('config', type=argparse.FileType(encoding='utf-8'))
-    with parser.parse_args(namespace=_Namespace()).config as f:
-        conda_update = CondaUpdate.model_validate(yaml.safe_load(f))
-
+def main():
+    conda_update = CondaUpdate()
     records = asyncio.run(conda_update.check())
 
     mirrors = {
@@ -135,9 +121,5 @@ def _main():
         print(rec.timestamp, url)
 
 
-class _Namespace:
-    config: TextIO
-
-
 if __name__ == '__main__':
-    _main()
+    main()
