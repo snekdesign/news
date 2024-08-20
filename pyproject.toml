@@ -40,10 +40,10 @@ platforms = ['linux-64', 'noarch']
 specs = [
     'ffmpeg >=7.0.3',
     'libmamba >=2.0.0',
-    'nginx >=1.27.1',
+    'nginx >=1.27.2',
     'pixi >=0.28.0',
     'py-rattler >=0.6.4',
-    'rattler-build >=0.19.1',
+    'rattler-build >=0.20.1',
     'typing-extensions >=4.13.0',
 ]
 mirrored_channels = [
