@@ -38,9 +38,9 @@ cache_path = 'F:\var\conda\pkgs\cache'
 channels = ['conda-forge']
 platforms = ['linux-64', 'noarch']
 specs = [
-    'ffmpeg >=7.0.3',
+    'ffmpeg >=7.1.1',
     'nginx >=1.27.2',
-    'py-rattler >=0.7.1',
+    'py-rattler >=0.7.2',
 ]
 mirrored_channels = [
     'auto',
