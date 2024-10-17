@@ -70,16 +70,12 @@ class CondaUpdate(_base.Settings):
             'rattler.PackageName',
             'list[tuple[rattler.MatchSpec, _CondaMatchSpec | None]]',
         ](list)
-        # BUG: in py-rattler<=0.7.0 (maybe later):
-        # - rattler.MatchSpec() rejects `[channel=xxx]`
+        # BUG: in py-rattler<=0.7.2 (maybe later):
         # - rattler.MatchSpec.matches() ignores channel
-        for conda_spec in set(map(_CondaMatchSpec, self.specs)):
-            # Convert `[channel=xxx]` to `channel::`
-            spec = str(conda_spec)
+        for spec in self.specs:
             rattler_spec = rattler.MatchSpec(spec)
             if pkg_name := rattler_spec.name:
-                if 'channel' in conda_spec:
-                    spec = spec[: spec.rindex(':')+1] + '*'
+                if rattler_spec.channel:
                     conda_spec = _CondaMatchSpec(spec)
                 else:
                     conda_spec = None

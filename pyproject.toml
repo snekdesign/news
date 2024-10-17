@@ -23,7 +23,7 @@ attrs = '>=19.2.0'
 conda = '*'
 progressbar2 = '>=3.34.3'
 pydantic-settings = '>=2.3.0'
-py-rattler = '>=0.2.1'
+py-rattler = '>=0.7.2'
 redo = '2.0.4'
 six = '>=1.13.0'
 
@@ -41,7 +41,7 @@ specs = [
     'datafusion >=43.0.0',
     'ffmpeg >=7.1.1',
     'nginx >=1.27.3',
-    'py-rattler >=0.7.2',
+    'py-rattler >=0.7.3',
     'xarray >=2024.10.0',
 ]
 mirrored_channels = [
