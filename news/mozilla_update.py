@@ -1,5 +1,6 @@
 __all__ = ('MozillaUpdate',)
 
+import urllib.parse
 from typing import Literal
 
 import mozdownload
@@ -34,9 +35,9 @@ def main():
             application=spec.application,
             extension=spec.extension,
             locale=spec.locale,
-            version='latest',
+            version='latest-esr',
         )
-        print(scraper.url)
+        print(urllib.parse.unquote(scraper.url))
 
 
 if __name__ == '__main__':
