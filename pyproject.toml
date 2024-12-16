@@ -34,13 +34,12 @@ index-url = 'https://mirrors.cernet.edu.cn/pypi/web/simple'
 check = 'python -m news'
 
 [tool.news.conda-update]
-cache_path = 'F:\var\conda\pkgs\cache'
+cache_path = 'E:\var\cache\rattler\repodata'
 channels = ['conda-forge']
 platforms = ['linux-64', 'noarch']
 specs = [
-    'datafusion >=43.0.0',
     'ffmpeg >=7.1.1',
-    'py-rattler >=0.8.3',
+    'py-rattler >=0.9.1',
 ]
 mirrored_channels = [
     'auto',

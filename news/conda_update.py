@@ -70,7 +70,7 @@ class CondaUpdate(_base.Settings):
             'rattler.PackageName',
             'list[tuple[rattler.MatchSpec, _CondaMatchSpec | None]]',
         ](list)
-        # BUG: in py-rattler<=0.8.2 (maybe later):
+        # BUG: in py-rattler<=0.9.0 (maybe later):
         # - rattler.MatchSpec.matches() ignores channel
         for spec in self.specs:
             rattler_spec = rattler.MatchSpec(spec)
