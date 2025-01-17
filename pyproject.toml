@@ -24,7 +24,7 @@ conda = '*'
 progressbar2 = '>=3.34.3'
 pydantic-settings = '>=2.3.0'
 py-rattler = '>=0.7.2'
-redo = '2.0.4'
+redo = '==2.0.4'
 six = '>=1.13.0'
 
 [tool.pixi.pypi-options]
@@ -38,8 +38,10 @@ cache_path = 'E:\var\cache\rattler\repodata'
 channels = ['conda-forge']
 platforms = ['linux-64', 'noarch']
 specs = [
+    'dotnet-runtime >=9.0.0',
     'ffmpeg >=7.1.1',
     'py-rattler >=0.9.1',
+    'shell >=0.2.0',
 ]
 mirrored_channels = [
     'auto',
