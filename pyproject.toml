@@ -1,6 +1,6 @@
 [project]
 name = 'news'
-dependencies = ['mozdownload']
+dependencies = ['mozdownload >=1.29.0']
 requires-python = '>=3.9'
 readme = 'README.md'
 
@@ -20,11 +20,11 @@ platforms = ['linux-64', 'win-64']
 
 [tool.pixi.dependencies]
 attrs = '>=19.2.0'
+distro = '>=1.4.0'
 conda = '*'
 progressbar2 = '>=3.34.3'
 pydantic-settings = '>=2.3.0'
 py-rattler = '>=0.7.2'
-redo = '==2.0.4'
 six = '>=1.13.0'
 
 [tool.pixi.pypi-options]
@@ -41,7 +41,7 @@ specs = [
     'dotnet-runtime >=9.0.0',
     'ffmpeg >=7.1.1',
     'py-rattler >=0.9.1',
-    'shell >=0.2.0',
+    'shell >=0.3.0',
 ]
 mirrored_channels = [
     'auto',
