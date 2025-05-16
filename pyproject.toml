@@ -33,11 +33,12 @@ check = 'python -m news'
 [tool.news.conda-update]
 cache_path = 'E:\var\cache\rattler\repodata'
 channels = ['conda-forge']
-platforms = ['linux-64', 'noarch']
+platforms = ['win-64', 'noarch']
 specs = [
     'ffmpeg >=7.1.2',
-    'ollama >=0.6.8',
+    'ollama >=0.6.9',
     'shell >=0.3.0',
+    'vs_win-64 >=2022.14.0',
 ]
 mirrored_channels = [
     'auto',
