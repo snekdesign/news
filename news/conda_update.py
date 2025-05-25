@@ -1,10 +1,9 @@
 __all__ = ('CondaUpdate',)
 
 import asyncio
-import collections
+import contextlib
 from typing import Annotated
 from typing import cast
-from typing import TYPE_CHECKING
 
 from annotated_types import Len
 import pydantic
@@ -12,14 +11,6 @@ import pydantic_settings
 import rattler
 from rattler.platform.platform import PlatformLiteral
 from typing_extensions import Doc
-
-if TYPE_CHECKING:
-    class _CondaMatchSpec:
-        def __init__(self, __spec: str) -> None: ...
-        def __contains__(self, field: str) -> bool: ...
-        def match(self, rec: rattler.RepoDataRecord) -> bool: ...
-else:
-    from conda.models.match_spec import MatchSpec as _CondaMatchSpec
 
 from . import _base
 
@@ -66,35 +57,19 @@ class CondaUpdate(_base.Settings):
     ] = frozenset()
 
     async def check(self):
-        specs_by_name = collections.defaultdict[
-            'rattler.PackageName',
-            'list[tuple[rattler.MatchSpec, _CondaMatchSpec | None]]',
-        ](list)
-        # BUG: in py-rattler<=0.10.0 (maybe later):
-        # - rattler.MatchSpec.matches() ignores channel
-        for spec in self.specs:
-            rattler_spec = rattler.MatchSpec(spec)
-            if pkg_name := rattler_spec.name:
-                if rattler_spec.channel:
-                    conda_spec = _CondaMatchSpec(spec)
-                else:
-                    conda_spec = None
-                specs_by_name[pkg_name].append((rattler_spec, conda_spec))
+        specs = [rattler.MatchSpec(spec, strict=True) for spec in self.specs]
         records = list['rattler.RepoDataRecord']()
-        for repodata in await rattler.fetch_repo_data(
-            channels=list(map(rattler.Channel, self.channels)),
-            platforms=list(map(rattler.Platform, self.platforms)),
-            cache_path=self.cache_path,
-            callback=None,
-        ):
-            for pkg_name, specs in specs_by_name.items():
-                for rec in repodata.load_records(pkg_name):
-                    for rattler_spec, conda_spec in specs:
-                        if rattler_spec.matches(rec) and (
-                            not conda_spec or conda_spec.match(rec)
-                        ):
-                            records.append(rec)
-                            break
+        with contextlib.ExitStack() as stack:
+            for repodata in [
+                stack.enter_context(repodata)
+                for repodata in await rattler.fetch_repo_data(
+                    channels=list(map(rattler.Channel, self.channels)),
+                    platforms=list(map(rattler.Platform, self.platforms)),
+                    cache_path=self.cache_path,
+                    callback=None,
+                )
+            ]:
+                records += repodata.load_matching_records(specs)
         return records
 
 
