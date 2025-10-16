@@ -36,7 +36,7 @@ channels = ['conda-forge']
 platforms = ['win-64', 'noarch']
 specs = [
     'ffmpeg >=8.0.1',
-    'ollama >=0.12.3',
+    'ollama >=0.12.6',
     'shell >=0.3.0',
     'torchaudio >=2.7.1',
 ]
@@ -78,7 +78,7 @@ mirrored_channels = [
     'ursky',
 ]
 
-# [[tool.news.mozilla-update.specs]]
-# application = 'firefox'
-# extension = 'msix'
-# locale = 'multi'
+[[tool.news.mozilla-update.specs]]
+application = 'firefox'
+extension = 'msix'
+locale = 'multi'
