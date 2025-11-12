@@ -36,9 +36,9 @@ channels = ['conda-forge']
 platforms = ['win-64', 'noarch']
 specs = [
     'ffmpeg >=8.0.1',
-    'ollama >=0.12.7',
     'shell >=0.3.0',
     'torchaudio >=2.7.1',
+    'vs_win-64 >=2026.0.0',
     'zed >=0.208.4',
 ]
 mirrored_channels = [
