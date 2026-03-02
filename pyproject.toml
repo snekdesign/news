@@ -3,12 +3,10 @@ name = 'news'
 dependencies = ['mozdownload >=1.29.0']
 requires-python = '>=3.9'
 readme = 'README.md'
+license-files = ['LICENSE']
 
 [[project.authors]]
 name = 'snekdesign'
-
-[project.license]
-file = 'LICENSE'
 
 [project.urls]
 Repository = 'https://github.com/snekdesign/news'
@@ -35,11 +33,11 @@ cache_path = 'E:\var\cache\rattler\repodata'
 channels = ['conda-forge']
 platforms = ['win-64', 'noarch']
 specs = [
-    'ffmpeg >=8.0.1',
+    'ffmpeg >=8.0.2',
     'shell >=0.3.0',
     'torchaudio >=2.7.1',
     'vs_win-64 >=2026.0.0',
-    'zed >=0.208.4',
+    'zed >=0.225.11',
 ]
 mirrored_channels = [
     'auto',
