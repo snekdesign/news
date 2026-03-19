@@ -33,11 +33,9 @@ cache_path = 'E:\var\cache\rattler\repodata'
 channels = ['conda-forge']
 platforms = ['win-64', 'noarch']
 specs = [
-    'ffmpeg >=8.0.2',
+    'ffmpeg >=8.1.1',
     'shell >=0.3.0',
     'torchaudio >=2.7.1',
-    'vs_win-64 >=2026.0.0',
-    'zed >=0.225.11',
 ]
 mirrored_channels = [
     'auto',
