@@ -1,8 +1,8 @@
 [project]
 name = 'news'
-version = '2025.5.25'
+version = '2026.5.1'
 dependencies = ['mozdownload >=1.29.0']
-requires-python = '>=3.9'
+requires-python = '>=3.14'
 readme = 'README.md'
 license-files = ['LICENSE']
 
@@ -20,64 +20,8 @@ platforms = ['linux-64', 'win-64']
 attrs = '>=19.2.0'
 distro = '>=1.4.0'
 progressbar2 = '>=3.34.3'
-pydantic-settings = '>=2.3.0'
-py-rattler = '>=0.13.0,<=0.22.0'
 requests = '>=2.21.0,<3.0.0'
 six = '>=1.13.0'
 
 [tool.pixi.tasks]
-check = 'python -m news'
-
-[tool.news.conda-update]
-cache_path = 'E:\var\cache\rattler\repodata'
-channels = ['conda-forge']
-platforms = ['win-64', 'noarch']
-specs = [
-    'ffmpeg >=8.1.1',
-    'gcc_win-64 >=16.0.0',
-    'shell >=0.3.0',
-    'torchaudio >=2.7.1',
-    'vs_win-64 >=2026.0.0',
-]
-mirrored_channels = [
-    'auto',
-    'biobakery',
-    'bioconda',
-    'c4aarch64',
-    'caffe2',
-    'conda-forge',
-    'deepmodeling',
-    'dglteam',
-    'fastai',
-    'fermi',
-    'idaholab',
-    'intel',
-    'matsci',
-    'menpo',
-    'MindSpore',
-    'mordred-descriptor',
-    'msys2',
-    'numba',
-    'ohmeta',
-    'omnia',
-    'Paddle',
-    'peterjc123',
-    'plotly',
-    'psi4',
-    'pytorch',
-    'pytorch-lts',
-    'pytorch-test',
-    'pytorch3d',
-    'pyviz',
-    'qiime2',
-    'rapidsai',
-    'rdkit',
-    'simpleitk',
-    'stackless',
-    'ursky',
-]
-
-[[tool.news.mozilla-update.specs]]
-application = 'firefox'
-extension = 'msix'
-locale = 'multi'
+check = 'mozdownload -d .cache --extension msix -l multi -v latest-esr'
